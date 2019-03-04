@@ -2,8 +2,10 @@ import createPlayer from './createPlayer'
 import { isDown } from '../utils'
 
 export default function (x, y, game, socket) {
+  const name = prompt('Enter your name', 'Harry Potter');
   const player = {
     socket,
+    name: name,
     sprite: createPlayer(x, y, game),
     playerName: null,
     speed: 0,
@@ -21,7 +23,7 @@ export default function (x, y, game, socket) {
         S: Phaser.Keyboard.S,
         A: Phaser.Keyboard.A,
         D: Phaser.Keyboard.D
-      }
+      };
 
       // Only emit if the player is moving
       if (this.speed !== 0) {
@@ -59,9 +61,9 @@ export default function (x, y, game, socket) {
       this.sprite.body.velocity.y = this.speed * Math.sin((this.sprite.body.angle - 360) * 0.01745)
 
       // Brings the player's sprite to top
-      game.world.bringToTop(this.sprite)
+      game.world.bringToTop(this.sprite);
 
-      this.updatePlayerName()
+      this.updatePlayerName();
       this.updatePlayerStatusText('speed', this.sprite.body.x - 57, this.sprite.body.y - 39, this.speedText)
     },
     emitPlayerData () {
@@ -82,26 +84,26 @@ export default function (x, y, game, socket) {
         }
       })
     },
-    updatePlayerName (name = this.socket.id, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
+    updatePlayerName (x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
       // Updates the player's name text and position
-      this.playerName.text = String(name)
-      this.playerName.x = x
-      this.playerName.y = y
+      this.playerName.text = String(this.name);
+      this.playerName.x = x;
+      this.playerName.y = y;
       // Bring the player's name to top
       game.world.bringToTop(this.playerName)
     },
     updatePlayerStatusText (status, x, y, text) {
       // Capitalize the status text
-      const capitalizedStatus = status[0].toUpperCase() + status.substring(1)
-      let newText = ''
+      const capitalizedStatus = status[0].toUpperCase() + status.substring(1);
+
       // Set the speed text to either 0 or the current speed
-      this[status] < 0 ? this.newText = 0 : this.newText = this[status]
+      this[status] < 0 ? this.newText = 0 : this.newText = this[status];
       // Updates the text position and string
-      text.x = x
-      text.y = y
-      text.text = `${capitalizedStatus}: ${parseInt(this.newText)}`
+      text.x = x;
+      text.y = y;
+      text.text = `${capitalizedStatus}: ${parseInt(this.newText)}`;
       game.world.bringToTop(text)
     }
-  }
+  };
   return player
 }

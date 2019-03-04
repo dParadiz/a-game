@@ -12,8 +12,8 @@ const updatePlayers = (socket, otherPlayers, game) => {
       if (otherPlayers[index] === undefined && index !== socket.id) {
         const newPlayer = player(data.x, data.y, game)
         newPlayer.playerName = createText(game, newPlayer)
-        newPlayer.speedText = createText(game, newPlayer)
-        newPlayer.updatePlayerName(data.playerName.name, data.playerName.x, data.playerName.y)
+        newPlayer.speedText = createText(game, newPlayer);
+        newPlayer.updatePlayerName(data.playerName.x, data.playerName.y)
         otherPlayers[index] = newPlayer
       }
 

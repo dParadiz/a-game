@@ -5,7 +5,7 @@ const newPlayer = (socket, player) => {
       y: player.sprite.body.y,
       angle: player.sprite.rotation,
       playerName: {
-        name: String(socket.id),
+        name: player.playerName,
         x: player.playerName.x,
         y: player.playerName.y
       },
@@ -16,6 +16,6 @@ const newPlayer = (socket, player) => {
       }
     })
   })
-}
+};
 
 export default newPlayer

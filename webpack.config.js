@@ -1,6 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
 const config = {
   target: 'web',
@@ -33,6 +33,6 @@ const config = {
     }),
     new HtmlWebpackPlugin({ template: './client/index.html' })
   ]
-}
+};
 
-module.exports = config
+module.exports = config;
